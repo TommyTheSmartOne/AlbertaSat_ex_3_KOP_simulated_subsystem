@@ -5,6 +5,9 @@ Description: it simulates a TCP(Transmission Communication Protocol) between the
             station and satellite. The server will continuously send Mountain - AB; BC (E);
             NT (E); SK (W) time information to the satellite as well as receive the geo
             location and satellite status from satellite
+
+Author: MingLiang Wang
+Date: 10/6/2024
 '''
 import socket
 from subsystem_command import Command
@@ -23,6 +26,8 @@ while True:
     TIME = str(c.get_time())
     satellite.send(bytes(TIME, "utf-8")) #  send current time to the satellite
     geo_location = satellite.recv(40).decode("utf-8")
-    print(geo_location)
+    if ground_station:
+        print(geo_location)
     satellite_state = satellite.recv(40).decode("utf-8")
-    print(satellite_state)
+    if satellite_state:
+        print(satellite_state)

@@ -10,6 +10,8 @@ Description: This file contains all the function that will be needed based on th
             Since it is for simulation/test purpose, the geo graphic information and satellite
             state will be random(I choose decimal format coordinate of North pole)
 
+Author: MingLiang Wang
+Date: 10/6/2024
 '''
 from datetime import datetime
 
