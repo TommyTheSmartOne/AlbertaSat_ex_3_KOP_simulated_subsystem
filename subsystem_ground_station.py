@@ -9,28 +9,25 @@ Description: it simulates a TCP(Transmission Communication Protocol) between the
 Author: MingLiang Wang
 Date: 10/6/2024
 '''
-from socket import socket
+import socket
 from subsystem_command import Command
 
 IP = socket.gethostname()
-ADDRESS = 1026
-c = Command()
-
+ADDRESS = 1025
 ground_station = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ground_station.bind((IP, ADDRESS))
+ground_station.listen(10)
 
-try:
-    ground_station.bind((IP, ADDRESS))
-    ground_station.listen(10)
+satellite, address = ground_station.accept() #  establish a connection between server and satellite
+print("Connection established")
 
-    satellite, address = ground_station.accept()  # establish a connection between server and satellite
-    print("Connection established")
-
-    while True:
-        TIME = str(c.get_time())
-        satellite.send(bytes(TIME, "utf-8"))  # send current time to the satellite
-        geo_location = satellite.recv(30).decode("utf-8")  # 30 indicates max 30 bytes will be recieved
+c = Command()
+while True:
+    TIME = str(c.get_time())
+    satellite.send(bytes(TIME, "utf-8")) #  send current time to the satellite
+    geo_location = satellite.recv(40).decode("utf-8")
+    if ground_station:
         print(geo_location)
-        satellite_state = satellite.recv(30).decode("utf-8")
+    satellite_state = satellite.recv(40).decode("utf-8")
+    if satellite_state:
         print(satellite_state)
-except:
-    ground_station.close()

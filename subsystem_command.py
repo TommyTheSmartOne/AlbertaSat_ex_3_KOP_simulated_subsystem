@@ -20,7 +20,6 @@ class Command:
     '''
     This class contains all the commands needed for the simulation
     '''
-
     def __init__(self):
         self.latitude = 90.0000
         self.longitude = 0.0000
@@ -44,7 +43,7 @@ class Command:
     def get_geo_location(self):
         '''
         This function gets the geo location() date from satellite
-        The geo location consists 2 float, here is an example:
+        The geo location consists 2 float:
             Latitude: -1.2832533
             Longitude: 36.8172449
         There are library that supports to find real time
@@ -57,7 +56,7 @@ class Command:
     def set_geo_location(self, latitude, longitude):
         '''
         This function sets the satellites geo location
-        The geo location consists 2 float, here is an example:
+        The geo location consists 2 float:
             Latitude: -1.2832533
             Longitude: 36.8172449
         '''
@@ -71,8 +70,10 @@ class Command:
             on
             off
         '''
-        if self.satellite_state == "off":  # since the satellite only have 2 states, this function acts like
+        if self.satellite_state == "off": #  since the satellite only have 2 states, this function acts like
             # a switch each time we call this function we will change the state of the satellite
             self.satellite_state = "on"
         else:
             self.satellite_state = "off"
+
+    # def send_ACK():
