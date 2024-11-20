@@ -14,6 +14,7 @@ Author: MingLiang Wang
 Date: 10/6/2024
 '''
 from datetime import datetime
+import keyboard
 
 
 class Command:
@@ -21,9 +22,13 @@ class Command:
     This class contains all the commands needed for the simulation
     '''
     def __init__(self):
-        self.latitude = 90.0000
-        self.longitude = 0.0000
+        self.latitude = 0
+        self.longitude = 0
         self.satellite_state = "off"
+
+    def startDrone(self):
+        self.set_satellite_state()
+
 
     def get_time(self):
         '''
@@ -76,4 +81,19 @@ class Command:
         else:
             self.satellite_state = "off"
 
+    def sendDirectionCommand(self):
+        if keyboard.is_pressed('w'):
+            return "Foward"
+        elif keyboard.is_pressed('a'):
+            return "Left"
+        elif keyboard.is_pressed('d'):
+            return "Right"
+        elif keyboard.is_pressed('s'):
+            return "Backward"
+        elif keyboard.is_pressed('u'):
+            return "Up"
+        elif keyboard.is_pressed('j'):
+            return "down"
+
+        return "on hold"
     # def send_ACK():

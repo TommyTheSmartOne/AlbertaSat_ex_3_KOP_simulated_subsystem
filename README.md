@@ -17,7 +17,7 @@
 1. Open another terminal and navigate to the project directory.
 2. Run the following command to start the client:
     ```bash
-    python subsystem_satelite.py
+    python subsystem_drone.py
     ```
 
 Make sure the server is running before starting the client.
