@@ -11,7 +11,7 @@ Date: 10/6/2024
 '''
 import socket
 from time import sleep
-from subsystem_command import Command
+from subsystem_drone_command import Command
 
 IP = "172.28.172.229"
 print(IP)
@@ -21,9 +21,18 @@ c = Command()
 drone = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # establish a TCP socket
 drone.connect((IP, ADDRESS))  # connect the drone to ground server
 
-c.startDrone()
 
-while True:  # the connection should always be established
+def startDrone():
+    while 1:
+        state = drone.recv(40)
+        if state:
+            c.set_satellite_state(1)
+            return
+
+
+startDrone()
+
+while 1:  # the connection should always be established
     drone.send(bytes(str(c.get_geo_location()), "utf-8"))  # send the drone current geo location and state to
     # the ground station
     drone.send(bytes(str(c.get_satellite_state()), "utf-8"))

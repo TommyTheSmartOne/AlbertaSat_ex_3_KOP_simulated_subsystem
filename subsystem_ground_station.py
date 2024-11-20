@@ -10,7 +10,7 @@ Author: MingLiang Wang
 Date: 10/6/2024
 '''
 import socket
-from subsystem_command import Command
+from subsystem_ground_command import Command
 
 IP = "172.28.172.229"
 ADDRESS = 5005
@@ -24,6 +24,8 @@ print("Connection established")
 
 c = Command()
 
+start = input("start? ")
+drone.send(bytes(start, "utf-8"))
 
 while True:
     #drone.send(bytes(TIME, "utf-8")) #  send current time to the drone
