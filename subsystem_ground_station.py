@@ -12,7 +12,7 @@ Date: 10/6/2024
 import socket
 from subsystem_ground_command import Command
 
-IP = "172.28.172.229"
+IP = "192.168.137.1"
 ADDRESS = 5005
 ground_station = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ground_station.bind((IP, ADDRESS))

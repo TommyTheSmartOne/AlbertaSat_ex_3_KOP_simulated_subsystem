@@ -13,7 +13,7 @@ import socket
 from time import sleep
 from subsystem_drone_command import Command
 
-IP = "172.28.172.229"
+IP = "192.168.137.1"
 print(IP)
 ADDRESS = 5005
 c = Command()
